@@ -1,4 +1,9 @@
 <h1>Welcome, this is the home page</h1>
+<%= button_to(
+      "Log Out",
+      destroy_user_session_path,
+      method: :delete
+    ) %>
 
 <button type="button"
         class="btn btn-lg btn-danger"
