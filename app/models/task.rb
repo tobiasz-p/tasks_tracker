@@ -5,4 +5,6 @@ class Task < ApplicationRecord
 
   has_many :assignments
   has_many :assignees, through: :assignments
+
+  accepts_nested_attributes_for :assignments
 end

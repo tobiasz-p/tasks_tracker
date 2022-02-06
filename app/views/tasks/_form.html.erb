@@ -35,3 +35,14 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+
+<%= simple_form_for @task do |f| %>
+  <%= f.input :title %>
+  <%#= f.association :creator %>
+
+  <%= f.association :assignees, label_method: :email, value_method: :id, as: :check_boxes, item_wrapper_tag: :div, item_wrapper_class: ""
+
+  %>
+  <%= f.button :submit %>
+<% end %>
