@@ -22,7 +22,7 @@ class TurboFailureApp < Devise::FailureApp
   end
 
   def skip_format?
-    %w(html turbo_stream */*).include? request_format.to_s
+    %w[html turbo_stream */*].include? request_format.to_s
   end
 end
 Devise.setup do |config|
@@ -143,7 +143,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '9ca3c47b195e6745e84a6dcbccf01e40e9364ae9209db06ebd5574d1d30abe06dd1aa172a304b3a5d728076362ab1092d2dcc2ff3df2368b5b8c7a49e5e8c4cf'
+  # config.pepper = '9ca3c47b195e6745e84a6dcbccf01e40e9364ae9209db06ebd5574d1d30abe06dd1aa172a304b3a5d72'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
