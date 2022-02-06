@@ -8,11 +8,11 @@
       <%= link_to 'Home', home_index_path, class:"nav-item nav-link" %>
       <%= link_to 'About', home_about_path, class:"nav-item nav-link" %>
       <%= link_to 'My Tasks', tasks_path, class:"nav-item nav-link" %>
-      <%= link_to 'Sign In', new_user_session_path, class:"nav-item nav-link" %>
-      <%= link_to 'Sign Up', new_user_registration_path, class:"nav-item nav-link" %>
       <% if current_user %>
         <%= link_to 'Edit Account', edit_user_registration_path, class:"nav-item nav-link" %>
-    <% end %>
+      <% end %>
+
     </div>
   </div>
+  <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-outline-success mx-3' %>
 </nav>
