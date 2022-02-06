@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,36 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_204_131_630) do
+ActiveRecord::Schema.define(version: 2022_02_06_162631) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'tasks', force: :cascade do |t|
-    t.bigint 'user_id', null: false
-    t.datetime 'due_date', precision: 6
-    t.string 'title'
-    t.text 'description'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['user_id'], name: 'index_tasks_on_user_id'
+  create_table "task_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id", "user_id"], name: "index_task_users_on_task_id_and_user_id", unique: true
+    t.index ["task_id"], name: "index_task_users_on_task_id"
+    t.index ["user_id"], name: "index_task_users_on_user_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at', precision: 6
-    t.datetime 'remember_created_at', precision: 6
-    t.string 'confirmation_token'
-    t.datetime 'confirmed_at', precision: 6
-    t.datetime 'confirmation_sent_at', precision: 6
-    t.string 'unconfirmed_email'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "due_date", precision: 6
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
-  add_foreign_key 'tasks', 'users'
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: 6
+    t.datetime "remember_created_at", precision: 6
+    t.string "confirmation_token"
+    t.datetime "confirmed_at", precision: 6
+    t.datetime "confirmation_sent_at", precision: 6
+    t.string "unconfirmed_email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "task_users", "tasks"
+  add_foreign_key "task_users", "users"
+  add_foreign_key "tasks", "users"
 end
