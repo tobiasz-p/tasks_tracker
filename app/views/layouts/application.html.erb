@@ -11,6 +11,8 @@
 </head>
 
 <body>
+  <%= render partial: "shared/navbar" %>
+
   <% if notice %>
     <p class="alert alert-success"><%= notice %></p>
   <% end %>
@@ -18,8 +20,8 @@
     <p class="alert alert-danger"><%= alert %></p>
   <% end %>
 
-  <%= render partial: "shared/navbar" %>
-
+  <br>
+  <br>
   <div class="container">
     <%= yield %>
   </div>
