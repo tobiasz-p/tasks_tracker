@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 2022_02_06_162631) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "task_users", force: :cascade do |t|
+  create_table "assignments", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "task_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["task_id", "user_id"], name: "index_task_users_on_task_id_and_user_id", unique: true
-    t.index ["task_id"], name: "index_task_users_on_task_id"
-    t.index ["user_id"], name: "index_task_users_on_user_id"
+    t.index ["task_id", "user_id"], name: "index_assignments_on_task_id_and_user_id", unique: true
+    t.index ["task_id"], name: "index_assignments_on_task_id"
+    t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2022_02_06_162631) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "task_users", "tasks"
-  add_foreign_key "task_users", "users"
+  add_foreign_key "assignments", "tasks"
+  add_foreign_key "assignments", "users"
   add_foreign_key "tasks", "users"
 end
