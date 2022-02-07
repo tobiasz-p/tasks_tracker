@@ -1,13 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Assignments</h1>
-
 <div id="assignments">
   <% @assignments.each do |assignment| %>
-    <%= render assignment %>
-    <p>
-      <%= link_to "Show this assignment", assignment %>
-    </p>
+    <div class="card mb-3 w-25">
+      <div class="card-body">
+        <h5 class="card-title"> <%= assignment.task.title %> </h5>
+        <h6 class="card-title"> <%= assignment.task.due_date %> </h6>
+        <p class="card-text"><%= assignment.task.description %></p>
+        <%#= link_to "Show this task", assignment.task, class: "btn btn-primary" %>
+      </div>
+    </div>
   <% end %>
 </div>
 
