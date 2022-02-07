@@ -6,6 +6,16 @@
       <div class="card-body">
         <h5 class="card-title"> <%= task.title %> </h5>
         <h6 class="card-title"> <%= task.due_date %> </h6>
+        <div class="progress">
+          <%
+            if task.assignments.count > 0
+              @progress = task.done_assignments_count/task.assignments.count.to_f*100
+            else
+              @progress = 0
+            end
+          %>
+          <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow=" <%= @progress %>" aria-valuemin="0" aria-valuemax="100"> <%= @progress %>% </div>
+        </div>
         <p class="card-text">Completed by <%= task.done_assignments_count %></p>
         <p class="card-text"><%= task.description %></p>
         <%= link_to "Show", task, class: "btn btn-primary" %>
