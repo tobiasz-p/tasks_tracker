@@ -5,12 +5,23 @@
     <div class="card mb-3 w-25">
       <div class="card-body">
         <h5 class="card-title"> <%= assignment.task.title %> </h5>
+        <p class="card-title"> <%= assignment.done %> </p>
         <h6 class="card-title"> <%= assignment.task.due_date %> </h6>
         <p class="card-text"><%= assignment.task.description %></p>
-        <%#= link_to "Show this task", assignment.task, class: "btn btn-primary" %>
+        <% if assignment.done %>
+          <%= button_to "Mark as not done", assignment_path(assignment.id),
+                        params: { assignment: { done: false } },
+                        method: :put,
+                        class: "btn btn-outline-danger" %>
+        <% else %>
+          <%= button_to "Mark as done", assignment_path(assignment.id),
+                        params: { assignment: { done: true } },
+                        method: :put,
+                        class: "btn btn-success" %>
+        <% end %>
+
+
       </div>
     </div>
   <% end %>
 </div>
-
-<%= link_to "New assignment", new_assignment_path %>
