@@ -7,4 +7,8 @@ class Task < ApplicationRecord
   has_many :assignees, through: :assignments
 
   validates :title, presence: true
+
+  scope :by_user, lambda { |user|
+    where(user_id: user.id)
+  }
 end

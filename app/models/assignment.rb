@@ -9,4 +9,8 @@ class Assignment < ApplicationRecord
                   column_names: {
                     ['assignments.done'] => :done_assignments_count
                   }
+
+  scope :by_user, lambda { |user|
+    where(user_id: user.id)
+  }
 end
