@@ -1,10 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @task %>
+<div class="card mb-3 w-50">
+  <div class="card-body">
+    <h5 class="card-title"> <%= @task.title %> </h5>
+    <h6 class="card-title"> <%= @task.due_date %> </h6>
+    <div class="progress">
+      <%
+        if @task.assignments.count > 0
+          @progress = (@task.done_assignments_count/@task.assignments.count.to_f*100).round
+        else
+          @progress = 0
+        end
+      %>
+      <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow=" <%= @progress %>" aria-valuemin="0" aria-valuemax="100"> <%= @progress %>% </div>
+    </div>
+    <p class="card-text"><%= @task.description %></p>
+    <p class="card=text">Assignees</p>
+    <div>
+      <% @task.assignments.each do |assignment| %>
+        <p class="card=text"><%= assignment.assignee.email %>, <%= assignment.done? %></p>
+      <% end %>
+    </div>
+    <%= link_to "Edit", edit_task_path(@task), class: "btn btn-secondary" %>
+    <%= button_to "Delete", @task, method: :delete, class: "btn btn-outline-danger mt-1" %>
+  </div>
+</div>
 
 <div>
-  <%= link_to "Edit this task", edit_task_path(@task) %> |
   <%= link_to "Back to tasks", tasks_path %>
-
-  <%= button_to "Destroy this task", @task, method: :delete %>
 </div>
