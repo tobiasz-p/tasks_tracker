@@ -9,7 +9,7 @@
         <div class="progress">
           <%
             if task.assignments.count > 0
-              @progress = task.done_assignments_count/task.assignments.count.to_f*100
+              @progress = (task.done_assignments_count/task.assignments.count.to_f*100).round
             else
               @progress = 0
             end
