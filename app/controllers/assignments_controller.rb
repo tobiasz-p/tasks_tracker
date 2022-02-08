@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: %i[ show edit update destroy ]
+  before_action :set_assignment, only: %i[show edit update destroy]
 
   # GET /assignments or /assignments.json
   def index
@@ -7,8 +9,7 @@ class AssignmentsController < ApplicationController
   end
 
   # GET /assignments/1 or /assignments/1.json
-  def show
-  end
+  def show; end
 
   # GET /assignments/new
   def new
@@ -16,8 +17,7 @@ class AssignmentsController < ApplicationController
   end
 
   # GET /assignments/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /assignments or /assignments.json
   def create
@@ -25,7 +25,7 @@ class AssignmentsController < ApplicationController
 
     respond_to do |format|
       if @assignment.save
-        format.html { redirect_to assignment_url(@assignment), notice: "Assignment was successfully created." }
+        format.html { redirect_to assignment_url(@assignment), notice: 'Assignment was successfully created.' }
         format.json { render :show, status: :created, location: @assignment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class AssignmentsController < ApplicationController
   def update
     respond_to do |format|
       if @assignment.update(assignment_params)
-        format.html { redirect_to assignments_url, notice: "Assignment was successfully updated." }
+        format.html { redirect_to assignments_url, notice: 'Assignment was successfully updated.' }
         format.json { render :show, status: :ok, location: @assignment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class AssignmentsController < ApplicationController
     @assignment.destroy
 
     respond_to do |format|
-      format.html { redirect_to assignments_url, notice: "Assignment was successfully destroyed." }
+      format.html { redirect_to assignments_url, notice: 'Assignment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_assignment
-      @assignment = Assignment.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def assignment_params
-      params.require(:assignment).permit(:user_id, :task_id, :done)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_assignment
+    @assignment = Assignment.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def assignment_params
+    params.require(:assignment).permit(:user_id, :task_id, :done)
+  end
 end
