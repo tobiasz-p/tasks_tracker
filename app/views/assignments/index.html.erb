@@ -1,14 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<div id="assignments">
-  <% @assignments.each do |assignment| %>
-    <div class="card mb-3 w-25">
-      <div class="card-body">
-        <h5 class="card-title"> <%= assignment.task.title %> </h5>
-        <p class="card-title"> <%= assignment.done %> </p>
-        <h6 class="card-title"> <%= assignment.task.due_date %> </h6>
-        <p class="card-text"><%= assignment.task.description %></p>
-        <% if assignment.done %>
+<div id="assignments table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @assignments.each do |assignment| %>
+      <th scope="row">1</th>
+      <td><%= assignment.task.title %></td>
+      <td><%= assignment.task.due_date %></td>
+      <td><%= assignment.done %></td>
+      <td><% if assignment.done %>
           <%= button_to "Mark as not done", assignment_path(assignment.id),
                         params: { assignment: { done: false } },
                         method: :put,
@@ -18,10 +26,10 @@
                         params: { assignment: { done: true } },
                         method: :put,
                         class: "btn btn-success" %>
-        <% end %>
+        <% end %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 
-
-      </div>
-    </div>
-  <% end %>
 </div>
