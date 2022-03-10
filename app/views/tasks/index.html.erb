@@ -2,28 +2,40 @@
 
 <%= link_to "New task", new_task_path, class:"btn btn-primary", data: { turbo_frame: 'remote_modal' } %>
 
-<div id="tasks">
-  <% @tasks.each do |task| %>
-    <div class="card mb-3 w-25">
-      <div class="card-body">
-        <h5 class="card-title"> <%= task.title %> </h5>
-        <h6 class="card-title"> <%= task.due_date %> </h6>
-        <div class="progress">
-          <%
-            if task.assignments.count > 0
-              @progress = (task.done_assignments_count/task.assignments.count.to_f*100).round
-            else
-              @progress = 0
-            end
-          %>
-          <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow=" <%= @progress %>" aria-valuemin="0" aria-valuemax="100"> <%= @progress %>% </div>
-        </div>
-        <p class="card-text">Completed by <%= task.done_assignments_count %></p>
-        <p class="card-text"><%= task.description %></p>
-        <%= link_to "Show", task, class: "btn btn-primary" %>
-        <%= link_to "Edit", edit_task_path(task), class: "btn btn-secondary" %>
-        <%= button_to "Delete", task, method: :delete, class: "btn btn-outline-danger mt-1" %>
-      </div>
-    </div>
-  <% end %>
+<div class = "table-responsive" id="tasks">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Task name</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">Completed status</th>
+        <th scope="col">No. of completed assignments</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @tasks.each do |task| %>
+          <tr>
+            <th scope="row"><%= task.title %></th>
+            <td><%= task.due_date %></td>
+            <td><div class="progress">
+              <%
+                if task.assignments.count > 0
+                  @progress = (task.done_assignments_count/task.assignments.count.to_f*100).round
+                else
+                  @progress = 0
+                end
+              %>
+              <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow=" <%= @progress %>" aria-valuemin="0" aria-valuemax="100"> <%= @progress %>% </div>
+            </div></td>
+            <td><%= task.done_assignments_count %></td>
+            <td><%= link_to "Show", task, class: "btn btn-primary" %>
+            <%= link_to "Edit", edit_task_path(task), class: "btn btn-secondary" %>
+            <%= button_to "Delete", task, method: :delete, class: "btn btn-outline-danger mt-1" %></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+
 </div>

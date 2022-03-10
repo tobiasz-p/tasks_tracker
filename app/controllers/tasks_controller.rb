@@ -24,10 +24,15 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.creator = current_user
 
-    if @task.save
-      redirect_to tasks_url notice: 'Task was successfully created.'
-    else
-      render :form_update, status: :unprocessable_entity
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to tasks_url notice: 'Task was successfully created.' }
+        format.json { render :show, status: :created, location: @task }
+      else
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
+        format.html { render :form, status: :unprocessable_entity }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
     end
   end
 
