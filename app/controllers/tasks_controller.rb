@@ -26,6 +26,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend('tasks', partial: 'tasks/task', locals: { task: @task })
+        end
         format.html { redirect_to tasks_url notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
