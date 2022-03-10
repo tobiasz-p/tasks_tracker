@@ -9,6 +9,6 @@
         <%= f.association :assignees, label: '', label_method: :email, value_method: :id, as: :check_boxes, item_wrapper_tag: :div, item_wrapper_class: "",
                           wrapper_html: { class:"overflow-auto ", style:"height: 200px;"},
                           input_html: { class: 'mx-1' } %>
-    <%= f.button :submit, class: "btn btn-secondary my-3" %>
+    <%= f.button :submit, class: "btn btn-secondary my-3", "data-bs-dismiss": 'modal' %>
   <% end %>
 </div>
