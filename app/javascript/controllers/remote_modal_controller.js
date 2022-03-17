@@ -7,8 +7,8 @@ export default class extends Controller {
         this.modal.show()
     }
 
-    hideAfterCreate(event) {
-        if (event.detail['fetchResponse']['response']['status'] === 200) {
+    submitEnd(event) {
+        if (event.detail.success) {
             this.modal.hide()
         }
     }
