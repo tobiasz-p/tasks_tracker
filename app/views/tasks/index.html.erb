@@ -14,24 +14,7 @@
       </thead>
       <tbody id="tasks">
         <% @tasks.each do |task| %>
-          <tr>
-            <th scope="row"><%= task.title %></th>
-            <td><%= task.due_date %></td>
-            <td><div class="progress">
-              <%
-                if task.assignments.count > 0
-                  @progress = (task.done_assignments_count/task.assignments.count.to_f*100).round
-                else
-                  @progress = 0
-                end
-              %>
-              <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow=" <%= @progress %>" aria-valuemin="0" aria-valuemax="100"> <%= @progress %>% </div>
-            </div></td>
-            <td><%= task.done_assignments_count %></td>
-            <td><%= link_to "Show", task, class: "btn btn-primary" %>
-            <%= link_to "Edit", edit_task_path(task), class: "btn btn-secondary" %>
-            <%= button_to "Delete", task, method: :delete, class: "btn btn-outline-danger mt-1" %></td>
-          </tr>
+          <%= render partial: "task", object: task %>
       <% end %>
     </tbody>
   </table>

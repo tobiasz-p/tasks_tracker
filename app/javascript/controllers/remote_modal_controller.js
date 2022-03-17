@@ -7,6 +7,12 @@ export default class extends Controller {
         this.modal.show()
     }
 
+    hideAfterCreate(event) {
+        if (event.detail['fetchResponse']['response']['status'] === 200) {
+            this.modal.hide()
+        }
+    }
+
     hideBeforeRender(event) {
         if (this.isOpen()) {
             event.preventDefault()
