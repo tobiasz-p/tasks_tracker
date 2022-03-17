@@ -7,6 +7,12 @@ export default class extends Controller {
         this.modal.show()
     }
 
+    submitEnd(event) {
+        if (event.detail.success) {
+            this.modal.hide()
+        }
+    }
+
     hideBeforeRender(event) {
         if (this.isOpen()) {
             event.preventDefault()
