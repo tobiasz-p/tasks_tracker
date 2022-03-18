@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import RemoteModalController from "./remote_modal_controller"
 application.register("remote-modal", RemoteModalController)
+
+import ToastController from "./toast_controller"
+application.register("toast", ToastController)
