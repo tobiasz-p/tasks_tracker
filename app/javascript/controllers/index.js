@@ -4,9 +4,13 @@
 
 import { application } from "./application"
 
-// import RemoteModalController from "./remote_modal_controller"
-// application.register("remote-modal", RemoteModalController)
+import RemoteModalController from "./remote_modal_controller"
+application.register("remote-modal", RemoteModalController)
+
+import ToastController from "./toast_controller"
+application.register("toast", ToastController)
 
 // eager load controllers
-import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
-eagerLoadControllersFrom("components", application)
+// this doesn't work
+// import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
+// eagerLoadControllersFrom("components", application)
