@@ -1,6 +1,4 @@
 import { Application } from "@hotwired/stimulus"
-import "@fortawesome/fontawesome-free/js/all.js"
-FontAwesome.config.mutateApproach = 'sync'
 
 const application = Application.start()
 
