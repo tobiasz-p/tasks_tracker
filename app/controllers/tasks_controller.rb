@@ -41,9 +41,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(@task, partial: 'tasks/task', locals: { task: @task })
-        end
+        format.turbo_stream
         format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
@@ -59,6 +57,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
