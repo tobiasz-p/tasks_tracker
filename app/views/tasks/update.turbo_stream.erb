@@ -1,0 +1,4 @@
+<%= turbo_stream.replace @task, partial: "tasks/task", locals: { task: @task } %>
+
+<%#= turbo_stream.append "flash", partial: "shared/flash", locals: { msg_type: :notice, message: "Your task was created successfully" } %>
+<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { title: "Task updated", message: "Your task was updated successfully." } %>

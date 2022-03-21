@@ -13,12 +13,11 @@
 <body>
   <%= render partial: "shared/navbar" %>
 
-  <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
+  <%= render 'shared/notices' %>
+
+  <div class="container position-relative">
+    <div id="toasts" style="position: absolute; top: 0; right: 0;"></div>
+  </div>
 
   <br>
   <br>

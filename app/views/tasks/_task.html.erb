@@ -12,6 +12,10 @@
     <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow=" <%= @progress %>" aria-valuemin="0" aria-valuemax="100"> <%= @progress %>% </div>
   </div></td>
   <td><%= task.done_assignments_count %></td>
-  <td><%= link_to "Show", task, class: "btn btn-primary" %>
-    <%= button_to "Delete", task, method: :delete, class: "btn btn-outline-danger mt-1" %></td>
+  <td>
+    <%#= link_to "Show", task, class: "btn btn-primary" %>
+    <%= button_to task, method: :delete, class: "btn btn-outline-danger mt-1" do %>
+      <i class="bi bi-trash3"></i>
+    <% end %>
+  </td>
 </tr>
