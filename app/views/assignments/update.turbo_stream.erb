@@ -1,0 +1,4 @@
+<%= turbo_stream.replace @assignment, partial: "assignments/assignment", locals: { assignment: @assignment } %>
+
+<%#= turbo_stream.append "flash", partial: "shared/flash", locals: { msg_type: :notice, message: "Your assignment was created successfully" } %>
+<%= turbo_stream.append "toasts", partial: "shared/toast", locals: { title: "Assignment updated", message: "Your assignment was updated successfully." } %>

@@ -1,35 +1,17 @@
-<p style="color: green"><%= notice %></p>
-
-<div id="assignments table-responsive">
+<div class = "table-responsive">
   <table class="table table-hover">
     <thead>
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">Title</th>
-        <th scope="col">Due Date</th>
-        <th scope="col">Status</th>
-      </tr>
+    <tr>
+      <th scope="col">Status</th>
+      <th scope="col">Title</th>
+      <th scope="col">Due date</th>
+      <th scope="col">Reporter</th>
+    </tr>
     </thead>
-    <tbody>
+    <tbody id="assignments">
     <% @assignments.each do |assignment| %>
-      <th scope="row">1</th>
-      <td><%= assignment.task.title %></td>
-      <td><%= assignment.task.due_date %></td>
-      <td><%= assignment.done %></td>
-      <td><% if assignment.done %>
-          <%= button_to "Mark as not done", assignment_path(assignment.id),
-                        params: { assignment: { done: false } },
-                        method: :put,
-                        class: "btn btn-outline-danger" %>
-        <% else %>
-          <%= button_to "Mark as done", assignment_path(assignment.id),
-                        params: { assignment: { done: true } },
-                        method: :put,
-                        class: "btn btn-success" %>
-        <% end %></td>
-      </tr>
+      <%= render partial: "assignment", object: assignment %>
     <% end %>
     </tbody>
   </table>
-
 </div>
