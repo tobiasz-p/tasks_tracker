@@ -1,7 +1,8 @@
 <tr id="<%= dom_id task %>">
-  <th scope="row"><%= link_to "#{ task.title }", edit_task_path(task), data: { turbo_frame: 'remote_modal' } %></th>
-  <td><%= task.due_date %></td>
-  <td><div class="progress">
+  <th scope="row" class="align-middle"><%= link_to "#{ task.title }", edit_task_path(task), data: { turbo_frame: 'remote_modal' } %></th>
+  <td class="align-middle"><%= task.due_date %></td>
+  <td>
+    <div class="progress">
     <%
       if task.assignments.count > 0
         @progress = (task.done_assignments_count/task.assignments.count.to_f*100).round
@@ -9,9 +10,10 @@
         @progress = 0
       end
     %>
-    <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow=" <%= @progress %>" aria-valuemin="0" aria-valuemax="100"> <%= @progress %>% </div>
-  </div></td>
-  <td><%= task.done_assignments_count %></td>
+      <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow=" <%= @progress %>" aria-valuemin="0" aria-valuemax="100"> <%= @progress %>% </div>
+    </div>
+  </td>
+  <td class="align-middle"><%= task.done_assignments_count %></td>
   <td>
     <%#= link_to "Show", task, class: "btn btn-primary" %>
     <%= button_to task, method: :delete, class: "btn btn-outline-danger mt-1" do %>
