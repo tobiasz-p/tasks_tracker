@@ -1,12 +1,21 @@
-<div id="<%= dom_id assignment %>">
-  <p>
-    <strong>User:</strong>
-    <%= assignment.user_id %>
-  </p>
+<tr id="<%= dom_id assignment %>">
+  <td><% if assignment.done %>
+      <%= button_to assignment_path(assignment.id),
+                    params: { assignment: { done: false } },
+                    method: :put,
+                   class: "btn btn-lg p-0 m-0" do %>
+        <i class="bi bi-check-circle-fill" style="color: cornflowerblue;"></i>
+      <% end %>
+    <% else %>
+      <%= button_to assignment_path(assignment.id),
+                    params: { assignment: { done: true } },
+                    method: :put,
+                    class: "btn btn-lg p-0 m-0" do %>
+        <i class="bi bi-circle"></i>
+      <% end %>
 
-  <p>
-    <strong>Task:</strong>
-    <%= assignment.task_id %>
-  </p>
-
-</div>
+    <% end %></td>
+  <td><%= assignment.task.title %></td>
+  <td><%= assignment.task.due_date %></td>
+  <td><%= assignment.task.creator.email %></td>
+</tr>

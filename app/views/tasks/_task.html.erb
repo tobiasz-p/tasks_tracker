@@ -1,5 +1,5 @@
 <tr id="<%= dom_id task %>">
-  <th scope="row"><%= link_to " #{ task.title }", edit_task_path(task), data: { turbo_frame: 'remote_modal' } %></th>
+  <th scope="row"><%= link_to "#{ task.title }", edit_task_path(task), data: { turbo_frame: 'remote_modal' } %></th>
   <td><%= task.due_date %></td>
   <td><div class="progress">
     <%
